@@ -1,0 +1,48 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Nueva habitacion{% endblock %}
+
+{% block contenido %}
+    <h1>Insertar nueva habitación</h1>
+
+    {% if errores.general %}
+        <p class="text-danger">{{ errores.general }}</p>
+    {% endif %}
+
+    <form action="/habitaciones" method="post" enctype="multipart/form-data">
+        <label for="numero">Número de habitación:</label>
+        {% if errores.numero %}
+            <p class="text-danger">{{ errores.numero }}</p>
+        {% endif %}
+        <input type="number" class="form-control" name="numero" placeholder="Número de habitación..." value="{{ datos.numero }}">
+        
+        <label for="tipo">Tipo de habitación:</label>
+        {% if errores.tipo %}
+            <p class="text-danger">{{ errores.tipo }}</p>
+        {% endif %}
+        <select class="form-control" name="tipo">
+            <option value="" disabled selected>-Seleccionar tipo de habitación-</option>
+            <option value="individual">Individual</option>
+            <option value="doble">Doble</option>
+            <option value="familiar">Familiar</option>
+            <option value="suite">Suite</option>
+        </select>
+        
+        <label for="precio">Precio:</label>
+        {% if errores.precio %}
+            <p class="text-danger">{{ errores.precio }}</p>
+        {% endif %}
+        <input class="form-control" type="number" name="precio" placeholder="Precio de la habitación..." value="{{ datos.precio }}">
+        
+        <label for="descripcion">Descripción:</label>
+        {% if errores.descripcion %}
+            <p class="text-danger">{{ errores.descripcion }}</p>
+        {% endif %}
+        <textarea class="form-control" name="descripcion" rows="5" value="{{ datos.descripcion }}"></textarea>
+        
+        <label for="imagen">Imagen:</label>
+        <input type="file" class="form-control" name="imagen">
+        
+        <input class="btn btn-primary" type="submit" value="Enviar">
+    </form>
+{% endblock %}

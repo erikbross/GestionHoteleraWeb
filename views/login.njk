@@ -1,0 +1,16 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+    <h1>Iniciar sesión</h1>
+    <form action="/auth/login" method="post" class="mt-4">
+        <label for="login" class="form-label">Usuario</label>
+        <input type="text" class="form-control" name="login">
+    
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" name="password">
+
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    </form>
+{% endblock %}

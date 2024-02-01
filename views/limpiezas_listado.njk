@@ -1,0 +1,27 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Limpiezas de habitación {{numHabitacion}}{% endblock %}
+
+{% block contenido %}
+    <h1>Limpiezas de habitación {{numHabitacion}}</h1>
+    {% if (session and session.usuario) %}
+        <a class="btn btn-primary" href="/limpiezas/nueva/{{idHabitacion}}">Nueva limpieza</a>
+    {% endif %}
+    <br><br>
+    <div class="row gx-1">
+    {% if limpiezas != "" %}
+        {% for limpieza in limpiezas %}
+            <div class="card p-4">
+                <p class="card-text"><i>{{ limpieza.fechaHora.getDate() }}/{{ limpieza.fechaHora.getMonth() + 1 }}/{{ limpieza.fechaHora.getFullYear() }}</i></p>
+                {% if limpieza.observaciones %}
+                    <p class="card-text">Observaciones: {{limpieza.observaciones}}</p>
+                {% else %}
+                    <p class="card-text">Sin observaciones</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay limpiezas por mostrar</p>
+    {% endif %}
+    </div>
+{% endblock %}
