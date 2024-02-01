@@ -1,5 +1,6 @@
 const Habitacion = require('./models/habitacion');
 const Limpieza = require('./models/limpieza');
+const Usuario = require('./models/usuario');
 
 let habitaciones = [
     new Habitacion({
@@ -93,5 +94,17 @@ let limpiezas = [
     }),
 ]
 
+let usuarios = [
+    new Usuario({
+        login: "admin",
+        password: "admin"
+    }),
+    new Usuario({
+        login: "user",
+        password: "user"
+    })
+]
+
 habitaciones.forEach(h => h.save());
 limpiezas.forEach(l => l.save());
+usuarios.forEach(u => u.save());
